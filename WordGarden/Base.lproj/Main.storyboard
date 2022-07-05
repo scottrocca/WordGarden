@@ -67,7 +67,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="_ _ _ _ _" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fA-mO-vvp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="_" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fA-mO-vvp">
                                 <rect key="frame" x="16" y="128" width="288" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -154,7 +154,7 @@
                         <outlet property="flowerImageView" destination="Dvc-eW-QSZ" id="Icc-OB-bnC"/>
                         <outlet property="gameStatusMessageLabel" destination="DAs-NQ-Pn7" id="78z-vJ-tfo"/>
                         <outlet property="guessLetterButton" destination="4Ze-bv-bha" id="juQ-wN-4Ra"/>
-                        <outlet property="guessedLetterField" destination="klP-At-tWH" id="85q-ha-s7s"/>
+                        <outlet property="guessedLetterTextField" destination="klP-At-tWH" id="85q-ha-s7s"/>
                         <outlet property="playAgainButton" destination="1D4-CT-y1U" id="Bi1-Nc-bd7"/>
                         <outlet property="wordBeingRevealedLabel" destination="0fA-mO-vvp" id="0Gs-KG-DBQ"/>
                         <outlet property="wordsGuessedLabel" destination="FQK-oZ-H46" id="byu-nc-4b9"/>
