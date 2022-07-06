@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     @IBOutlet weak var wordsGuessedLabel: UILabel!
@@ -30,6 +31,7 @@ class ViewController: UIViewController {
     var wordsGuessedCount = 0
     var wordsMissedCount = 0
     var guessCount = 0
+    var audioPlayer: AVAudioPlayer!
     
     
     override func viewDidLoad() {
@@ -46,6 +48,20 @@ class ViewController: UIViewController {
 //        }
 //        wordBeingRevealedLabel.text = revealedWord
         
+    }
+    
+    func playSound(name: String) {
+        if let sound = NSDataAsset(name: name){
+            do {
+                try audioPlayer = AVAudioPlayer(data: sound.data)
+                audioPlayer.play()
+            } catch {
+                print("😡 ERROR: \(error.localizedDescription) Could not initialize AVAudioPlayer object.")
+            }
+            
+        } else {
+            print("😡 ERROR: Could not read data from file sound0")
+        }
     }
     
     func updateUIAfterGuess() {
@@ -99,6 +115,9 @@ class ViewController: UIViewController {
         if !wordToGuess.contains(currentLetterGuessed) {
             wrongGuessesRemaining = wrongGuessesRemaining - 1
             flowerImageView.image = UIImage(named: "flower\(wrongGuessesRemaining)")
+            playSound(name: "incorrect")
+        } else {
+            playSound(name: "correct")
         }
         
         //update gameStatusMessageLabel
@@ -110,10 +129,12 @@ class ViewController: UIViewController {
         if wordBeingRevealedLabel.text!.contains("_") == false {
             gameStatusMessageLabel.text = "You've guessed it! It took you \(guessCount) guesses to guess the word."
             wordsGuessedCount += 1
+            playSound(name: "word-guessed")
             updateAfterWinOrLose()
         } else if wrongGuessesRemaining == 0 {
             gameStatusMessageLabel.text = "So sorry. Your're all out of guesses."
             wordsMissedCount += 1
+            playSound(name: "word-not-guessed")
             updateAfterWinOrLose()
         }
         
@@ -123,7 +144,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func guessedLetterFieldChanged(_ sender: UITextField) {
-        sender.text = String(sender.text?.last ?? " ").trimmingCharacters(in: .whitespaces)
+        sender.text = String(sender.text?.last ?? " ").trimmingCharacters(in: .whitespaces).uppercased()
         guessLetterButton.isEnabled = !(sender.text!.isEmpty)
     }
     
